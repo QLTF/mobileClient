@@ -1,4 +1,4 @@
-package com.blogapp;
+package com.qiang.blogapp;
 
 import com.facebook.react.ReactActivity;
 

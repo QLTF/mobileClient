@@ -1,5 +1,4 @@
-package com.blogapp;
-
+package com.qiang.blogapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;

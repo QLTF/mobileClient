@@ -7,7 +7,9 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View,TextInput,Alert} from 'react-native';
+import SeacherBar from './src/components/SeacherBar';
+import ListViewComp from './src/components/ListViewComp';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,12 +20,29 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      ListData:[],
+      text:'hello'
+    }
+  }
+  
+  updateListData(args){
+    // Alert.alert('提示',JSON.stringify(args));
+    this.setState({
+      ListData:args.ListData,
+      text:args.text
+   })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        {/* <Text>{this.state.text}</Text> */}
+        <SeacherBar callback={this.updateListData.bind(this)}></SeacherBar>
+        <ListViewComp ListData={this.state.ListData}></ListViewComp>
       </View>
     );
   }
@@ -32,8 +51,9 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    top:35,
+    justifyContent: 'flex-start',
+    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
