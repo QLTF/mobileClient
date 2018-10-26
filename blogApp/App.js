@@ -30,18 +30,18 @@ export default class App extends Component<Props> {
   }
   
   updateListData(args){
-    // Alert.alert('提示',JSON.stringify(args));
+    args = JSON.parse(args);
     this.setState({
       ListData:args.ListData,
       text:args.text
-   })
+   });
+  //  alert(JSON.stringify(this.state.ListData))
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {/* <Text>{this.state.text}</Text> */}
-        <SeacherBar callback={this.updateListData.bind(this)}></SeacherBar>
+        <SeacherBar style={{height:20}} callback={this.updateListData.bind(this)}></SeacherBar>
         <ListViewComp ListData={this.state.ListData}></ListViewComp>
       </View>
     );
@@ -52,9 +52,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     top:35,
-    justifyContent: 'flex-start',
-    // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    // justifyContent: 'flex-start',
+    // // alignItems: 'center',
+    // flexDirection:'column',
+    // backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,

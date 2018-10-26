@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text , TextInput ,Keyboard,Button,StyleSheet,Alert } from 'react-native';
 import { gray } from 'ansi-colors';
 import Api from '../api/api';
+import netUtil from '../api/netUtil';
 
 class SeacherBar extends Component {
   constructor(props) {
@@ -19,7 +20,11 @@ class SeacherBar extends Component {
   };
 
   queryData(){
-      
+      let loadData = netUtil.getListData(Api.listData,{
+        method:"get"
+      },(res)=>{
+         this.props.callback(res);
+      });
   }
   
 
@@ -36,7 +41,7 @@ class SeacherBar extends Component {
 const styles = StyleSheet.create({
     SeacherBarView:{
         height:50,
-        flex: 1,
+        // flex: 1,
         justifyContent:'flex-start',
         alignItems:'flex-start',
         flexDirection:'row'
